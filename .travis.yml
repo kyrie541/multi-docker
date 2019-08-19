@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t kyriehaha/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t kyrie541/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run kyriehaha/react-test npm run test -- --coverage
+  - docker run kyrie541/react-test npm run test -- --coverage
   
 after_success:
-  - docker build -t kyriehaha/multi-client ./client
-  - docker build -t kyriehaha/multi-nginx ./nginx
-  - docker build -t kyriehaha/multi-server ./server
-  - docker build -t kyriehaha/multi-worker ./worker
+  - docker build -t kyrie541/multi-client ./client
+  - docker build -t kyrie541/multi-nginx ./nginx
+  - docker build -t kyrie541/multi-server ./server
+  - docker build -t kyrie541/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push kyriehaha/multi-client
-  - docker push kyriehaha/multi-nginx
-  - docker push kyriehaha/multi-server
-  - docker push kyriehaha/multi-worker
+  - docker push kyrie541/multi-client
+  - docker push kyrie541/multi-nginx
+  - docker push kyrie541/multi-server
+  - docker push kyrie541/multi-worker
